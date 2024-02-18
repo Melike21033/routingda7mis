@@ -1,0 +1,18 @@
+<!-- user-interface.component.html -->
+<div class="sidebar">
+    <!-- Logo -->
+    <div class="logo">
+        <img src="assets/logo.png" alt="Logo">
+    </div>
+    
+    <!-- Buttons -->
+    <div class="button-container">
+        <button class="sidebar-button" [routerLink]="['/user-interface-dashboard']">Dashboard</button>
+        <button class="sidebar-button" [routerLink]="['/user-interface-tickets']">Tickets</button>
+        <button class="sidebar-button" (click)="logout()">Logout</button>
+    </div>
+</div>
+
+<div class="main-content">
+    <router-outlet></router-outlet>
+</div>

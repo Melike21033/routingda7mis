@@ -1,0 +1,32 @@
+/* Styles pour les diagrammes */
+.canvas-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+  
+  .canvas-container canvas {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 400px; /* Ajustez selon vos besoins */
+    max-height: 400px; /* Ajustez selon vos besoins */
+    margin: auto;
+    display: block;
+  }
+  /* Style pour le conteneur du nombre total de tickets */
+.total-tickets-container {
+    width: 400px; /* Largeur du carré */
+    height: 150px; /* Hauteur du carré */
+    background-color: #894e28; /* Couleur de fond du carré */
+    border-radius: 10px; /* Bord arrondi du carré */
+    text-align: center; /* Centrage du texte à l'intérieur du carré */
+    line-height: 150px; /* Centrage vertical du texte */
+    margin: 0 auto; /* Centrage horizontal du carré */
+    margin-bottom: 20px; /* Marge en bas pour séparer des autres éléments */
+}
+
+/* Style pour le texte du nombre total de tickets */
+.total-tickets-text {
+    font-size: 24px; /* Taille de la police */
+    color: #ffffff; /* Couleur du texte */
+}

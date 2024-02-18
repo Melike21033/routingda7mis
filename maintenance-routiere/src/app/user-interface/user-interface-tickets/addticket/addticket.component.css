@@ -1,0 +1,108 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+  }
+  
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    
+  }
+  
+  .modal-content {
+    position: absolute;
+    top: 25.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    height: 470px;
+    margin-top: 10%;
+    margin-bottom: -10%;
+  }
+  
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+  }
+  
+  label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+    color: #333;
+    margin-left: 10px;
+    margin-top: -5px;
+  }
+  
+  input {
+    width: 95%;
+    padding: 10px;
+    margin: 5px 0 15px;
+    box-sizing: border-box;
+    margin-left: 8px;
+    border-radius: 2px;
+  }
+  
+  .b {
+    background-color: #f5eded;
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 80px;
+  }
+  textarea{
+    margin-left: 8px;
+    width: 95%;
+    height: 60px;
+    border-radius: 2px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    resize: none;
+  }
+  .a {
+    margin-left: 8px;
+    background-color: #252323; /* Couleur de fond */
+    border: none;
+    color: white; /* Couleur du texte */
+    padding: 10px 20px; /* Réduire l'espacement du texte à l'intérieur du bouton */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    border-radius: 5px; /* Coins arrondis */
+    cursor: pointer; /* Curseur au survol */
+    transition-duration: 0.4s; /* Animation de transition */
+    height: 30px; /* Réduire la hauteur du bouton */
+    width: 284px; /* Réduire la largeur du bouton */
+    margin-bottom: 20px;
+}
+
+.a:hover {
+    background-color: #252323; /* Changement de couleur au survol */
+    color: white; /* Changement de couleur du texte */
+}
+select{
+  width: 95%;
+    padding: 10px;
+    margin: 5px 0 15px;
+    box-sizing: border-box;
+    margin-left: 8px;
+    border-radius: 2px;
+}

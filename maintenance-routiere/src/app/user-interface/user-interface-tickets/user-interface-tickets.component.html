@@ -1,0 +1,41 @@
+<!-- user-interface-tickets.component.html -->
+<app-user-interface></app-user-interface>
+<div style="margin-left:200px; background-color: rgb(255, 252, 250); width: 87%; overflow: hidden;border: 1px solid rgb(234, 234, 234);margin-top: 50px;">
+    <div style="margin-left: 20px; margin-bottom: 20px;">
+        <div style="display: inline-block;">
+            
+            <h2>Tickets Liste</h2>
+        </div>
+        <div style="display: inline-block; margin-left: 73%;">
+            <button class="action-button" (click)="openModal()">Add New</button>
+        </div>
+<table class="table">
+    <tr>
+        <th>ticket ID</th>
+        <th>description</th>
+        <th>localisation</th>
+        <th>date_creation</th>
+        <th>date_resolution</th>
+        <th>Image</th> <!-- Nouvelle colonne pour l'image -->
+        <th>priorite</th>
+        <th>statut</th>
+    </tr>
+    <tr *ngFor="let ticket of tickets"> <!-- Ajoutez une apostrophe après "tickets" -->
+        <td>{{ ticket.id }}</td>
+        <td>{{ ticket.description }}</td>
+        <td>{{ ticket.localisation }}</td>
+        <td>{{ ticket.date_creation }}</td>
+        <td>{{ ticket.date_resolution }}</td>
+        <!-- Vérifiez si le ticket a une image, affichez un lien vers l'image -->
+        <td *ngIf="ticket.image">
+            <a href="{{ ticket.image }}" target="_blank">Voir l'image</a>
+        </td>
+        <!-- Si le ticket n'a pas d'image, affichez simplement un texte -->
+        <td *ngIf="!ticket.image">Pas d'image</td>
+        <td>{{ ticket.priority }}</td>
+        <td>{{ ticket.status }}</td>
+    </tr>
+</table>
+</div>
+</div>
+<app-addticket></app-addticket>

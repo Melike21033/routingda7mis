@@ -1,0 +1,20 @@
+<!-- user-interface-dashboard.component.html -->
+<app-user-interface></app-user-interface>
+
+<div>
+    <h2  style="margin-left: 250px;">Statistiques</h2>
+    <!-- Section pour afficher le nombre total de tickets -->
+
+    <div style="width: 60%; display: inline-block;">
+        <h4 style="margin-left: 250px;">Statistique  Priorités </h4>
+
+      <div style="width: 60%;" style="margin-left: 250px;">
+      <canvas #priorityChart></canvas>
+    </div>
+    </div>
+  
+    <div style="width: 30%; display: inline-block;">
+        <h4 style="margin-left: 100px;">Statistique sur les status </h4>
+      <canvas #statusChart></canvas>
+    </div>
+  </div>
