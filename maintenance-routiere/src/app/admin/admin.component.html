@@ -1,0 +1,44 @@
+<!-- admin.component.html -->
+<!-- user-interface.component.html -->
+<div class="sidebar">
+    <!-- Logo -->
+    <div class="logo">
+        <img src="assets/logo.png" alt="Logo">
+    </div>
+    
+    <!-- Buttons -->
+    <div class="button-container">
+        <button class="sidebar-button" [routerLink]="['/user-interface-dashboard']">Dashboard</button>
+        <button class="sidebar-button" [routerLink]="['/admin']">Users</button>
+        <button class="sidebar-button" (click)="logout()">Logout</button>
+    </div>
+</div>
+
+<div class="main-content">
+    <h2>Liste des Utilisateurs</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Email</th>
+          <th>Rôle</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let utilisateur of utilisateurs">
+          <td>{{ utilisateur.nom }}</td>
+          <td>{{ utilisateur.email }}</td>
+          <td>{{ utilisateur.role }}</td>
+          <td>
+            <select [(ngModel)]="utilisateur.nouveauRole">
+              <option value="user">Utilisateur</option>
+              <option value="admin">Admin</option>
+              <option value="technicien">technicien</option>
+            </select>
+            <button (click)="changerRole(utilisateur, utilisateur.nouveauRole)">Changer Rôle</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

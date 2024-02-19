@@ -24,6 +24,9 @@ public class TicketService {
     public List<Ticket> getTicketsByUtilisateurId(Long utilisateurId) {
         return ticketRepository.findByUtilisateurId(utilisateurId);
     }
+    public List<Ticket> getAllTickets() {
+        return ticketRepository.findAll();
+    }
 
     public Ticket createTicket(Ticket ticket) {
         // Implémentez ici la logique de création du ticket, par exemple la validation des données
@@ -37,7 +40,36 @@ public class TicketService {
     public void deleteTicket(Long id) {
         ticketRepository.deleteById(id);
     }
+    public Ticket changeTicketStatus(Long id, String status) {
+        Optional<Ticket> optionalTicket = ticketRepository.findById(id);
+        if (optionalTicket.isPresent()) {
+            Ticket ticket = optionalTicket.get();
+            // Store the existing values of other fields
+            String description = ticket.getDescription();
+            String localisation = ticket.getLocalisation();
+            String image = ticket.getImage();
+            String priority = ticket.getPriority();
 
+            // Update only the status field
+            ticket.setStatus(status);
+
+            // Restore the original values of other fields
+            ticket.setDescription(description);
+            ticket.setLocalisation(localisation);
+            ticket.setImage(image);
+            ticket.setPriority(priority);
+
+            // Save the updated ticket
+            Ticket updatedTicket = ticketRepository.save(ticket);
+
+            // Log the updated ticket
+            System.out.println("Updated ticket: " + updatedTicket);
+
+            return updatedTicket;
+        } else {
+            return null;
+        }
+    }
     public Ticket updateTicket(Long id, Ticket updatedTicket) {
         Optional<Ticket> optionalTicket = ticketRepository.findById(id);
         if (optionalTicket.isPresent()) {

@@ -1,0 +1,94 @@
+.sidebar {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #FFFFFF;
+    overflow-x: hidden;
+    padding-top: 20px;
+    border-right: 2px solid #f8f3f3;
+}
+
+.logo {
+    padding: 10px;
+}
+
+.logo img {
+    width: 100%;
+    max-width: 180px; /* Adjust width as per your logo size */
+}
+
+.button-container {
+    margin-top: 20px;
+}
+
+.sidebar-button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #f8f3f3;
+    color: #333;
+    text-align: left;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.sidebar-button:hover {
+    background-color: #e0e0e0;
+}
+
+.main-content {
+    margin-left: 200px; /* Adjust based on sidebar width */
+    padding: 20px;
+}
+body {
+    font-family: Arial, sans-serif;
+}
+
+.table {
+    width: 94%;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    background-color: #ffffff;
+}
+
+.table th {
+    background-color: #894e28;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+
+.table tr:hover {
+    background-color: #ddd;
+}
+
+.action-button {
+    background-color: #252323;
+    padding: 10px 24px;
+    border-radius: 12px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border: none; /* Ajoutez cette ligne pour supprimer la bordure */
+} 
+.action-button:hover{
+    background-color: #252323;
+}
+img{
+    display: inline-block;
+    width: 22px;
+}
+

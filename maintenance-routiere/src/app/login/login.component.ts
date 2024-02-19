@@ -24,7 +24,9 @@ export class LoginComponent {
         if (response.role === 'user') {
           this.router.navigate(['/user-interface-tickets']);
         } else if (response.role === 'admin') {
-          this.router.navigate(['/interface-admin-tickets']);
+          this.router.navigate(['/admin']);
+        }else if (response.role === 'technicien') {
+          this.router.navigate(['/tech-interface-tickets']);
         } else {
           this.errorMessage = 'Rôle non autorisé';
         }

@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Ticket } from '../ticket';
 import { Router } from '@angular/router';
 import { UserInterfaceTicketsService } from '../user-interface-tickets.service';
 import { LoginResponse } from '../../LoginResponse';
 import { ResponseService } from 'src/app/response.service';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -13,7 +14,6 @@ import { ResponseService } from 'src/app/response.service';
 })
 export class AddticketComponent {
   tickets: Ticket[] = [];
-
   isAdding: boolean = false;
   newTicket: Ticket = {
     id: 0,
@@ -21,51 +21,42 @@ export class AddticketComponent {
     localisation: '',
     date_creation: new Date(),
     date_resolution: null,
-    priority: 'Basse', // Mettre par défaut à Basse
-    status: 'En attente', // Mettre par défaut à En attente
-    image: '',
-    userId:0
+    priority: 'Basse',
+    status: 'En attente',
+    image: '', // L'image sera stockée sous forme de chemin relatif
+    userId: 0
   };
-  userId: number = 0; // Propriété pour stocker l'ID de l'utilisateur
-  private loginResponse: LoginResponse | undefined;
 
-  constructor(private ticketservice: UserInterfaceTicketsService, private router: Router,    private responseService: ResponseService// Injection du service d'authentification
-  ) {
-    // Vous pouvez initialiser userId ici ou le faire dans une autre méthode selon vos besoins
-    // Par exemple, si vous avez l'ID de l'utilisateur stocké dans la réponse de connexion
-    
-  }
+  constructor(
+    private http: HttpClient,
+    private ticketservice: UserInterfaceTicketsService,
+    private router: Router,
+    private responseService: ResponseService
+  ) {}
 
   addTicket(event: any): void {
-    event.preventDefault(); // Empêcher l'action par défaut du formulaire
-    const loginResponse = this.responseService.getResponse(); // Récupérer la réponse de connexion
-    console.log("tekeiber"); // Afficher la réponse de connexion dans la console
-    console.log(loginResponse); // Afficher la réponse de connexion dans la console
-    console.log(loginResponse); // Afficher la réponse de connexion dans la console
+    event.preventDefault();
+    const loginResponse = this.responseService.getResponse();
 
     if (!this.isAdding) {
       this.isAdding = true;
-   
+
       if (!loginResponse) {
         console.error('Réponse de connexion non disponible lors de l\'ajout de ticket.');
         return;
       }
-  
+
       this.ticketservice.createTicket(this.newTicket).subscribe(() => {
         this.closeModal();
         window.location.reload();
-        this.router.navigate(['/user-interface-tickets']); // Déplacer la navigation ici
+        this.router.navigate(['/user-interface-tickets']);
         this.isAdding = false;
       }, error => {
-        // Gérer les erreurs de création de ticket ici
         console.error("Une erreur s'est produite lors de la création du ticket :", error);
         this.isAdding = false;
       });
     }
   }
-  
-
-
 
   getCurrentLocation(): void {
     if (navigator.geolocation) {
@@ -76,15 +67,28 @@ export class AddticketComponent {
       console.log("La géolocalisation n'est pas supportée par ce navigateur.");
     }
   }
+
+  // Fonction appelée lorsque l'utilisateur sélectionne un fichier
   onFileSelected(event: any): void {
     const file: File = event.target.files[0];
-    const reader = new FileReader();
-    reader.onload = (e: any) => {
-        // Encodez l'image en Base64
-        const base64Image = btoa(e.target.result);
-        this.newTicket.image = base64Image;
-    };
-    reader.readAsBinaryString(file);
+    this.uploadFile(file);
+}
+
+
+// Fonction pour envoyer le fichier à votre API back-end
+uploadFile(file: File): void {
+  const formData: FormData = new FormData();
+  formData.append('file', file);
+
+  this.http.post<any>('http://localhost:8082/api/tickets/upload', formData).subscribe(
+    (response) => {
+      // Stockez l'URL de l'image dans le modèle Ticket
+      this.newTicket.image = response.imageUrl;
+    },
+    (error) => {
+      console.error("Une erreur s'est produite lors de l'envoi du fichier :", error);
+    }
+  );
 }
 
 
@@ -94,6 +98,4 @@ export class AddticketComponent {
       modalBackground.style.display = 'none';
     }
   }
-
 }
-

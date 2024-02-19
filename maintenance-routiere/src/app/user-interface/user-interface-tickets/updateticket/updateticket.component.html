@@ -1,0 +1,35 @@
+<!-- updateticket.component.html -->
+<div id="modalBackgroundupdate"  class="modal">
+    <div>
+      <div class="modal-content">
+        <span class="close" id="closeModalBtn" (click)="closeModalUpdate()">&times;</span>
+        <h3>Update client</h3>
+        <hr style="width: 338.2px;margin-left: -20px;">
+        <form (submit)="updateTicket()">
+            <div class="iii">
+            <label style="margin-top: 10px;" for="description">Description :</label>
+            <textarea type="text" id="description"  [(ngModel)]="updatedTicket.description" name="description" required ></textarea>
+      
+            <label for="localisation">Localisation :</label>
+            <button class="a" type="button" (click)="getCurrentLocation()">Obtenir la localisation actuelle</button>
+            <label for="image">Image :</label>
+      <input type="file" id="image" (change)="onFileSelected($event)">
+      
+            <label for="date_creation">Date de création :</label>
+            <input type="date" id="date_creation" [(ngModel)]="updatedTicket.date_creation" name="date_creation" required>
+      
+            <label for="priorite">Priorité :</label>
+            <select id="priorite" [(ngModel)]="updatedTicket.priority" name="priorite" required>
+              <option value="Haute">Haute</option>
+              <option value="Moyenne">Moyenne</option>
+              <option value="Basse">Basse</option>
+            </select>
+      
+          </div>
+          <div style="width: 113.5%;background-color:  #252323;margin-left: -20px;height: 70px;">
+            <button class="b" id="saveBtn" style="margin-top: 15px;margin-left: 230px;" (click)="updateTicket()">Ajouter</button>
+          </div>
+        </form>   
+      </div>
+    </div>
+  </div>

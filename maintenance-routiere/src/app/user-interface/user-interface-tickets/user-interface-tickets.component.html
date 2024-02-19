@@ -19,8 +19,9 @@
         <th>Image</th> <!-- Nouvelle colonne pour l'image -->
         <th>priorite</th>
         <th>statut</th>
+        <th>Action</th>
     </tr>
-    <tr *ngFor="let ticket of tickets"> <!-- Ajoutez une apostrophe après "tickets" -->
+    <tr *ngFor="let ticket of Tickets"> <!-- Ajoutez une apostrophe après "tickets" -->
         <td>{{ ticket.id }}</td>
         <td>{{ ticket.description }}</td>
         <td>{{ ticket.localisation }}</td>
@@ -34,8 +35,14 @@
         <td *ngIf="!ticket.image">Pas d'image</td>
         <td>{{ ticket.priority }}</td>
         <td>{{ ticket.status }}</td>
+        <td>
+            <img src="assets/icons8-edit.svg" alt="Edit" (click)="openModalUpdate(ticket.id)" >
+            <img src="assets/icons8-delete.svg" alt="Delete" (click)="openModalDelete(ticket.id)">
+        </td>
     </tr>
 </table>
 </div>
 </div>
 <app-addticket></app-addticket>
+<app-deleteticket></app-deleteticket>
+<app-updateticket></app-updateticket>

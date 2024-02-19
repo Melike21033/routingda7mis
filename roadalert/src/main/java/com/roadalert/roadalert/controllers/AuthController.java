@@ -39,6 +39,11 @@ public class AuthController {
             response.setRole("admin");
             // Ajoutez d'autres données au besoin
             return ResponseEntity.ok(response);
+        }else if (utilisateur.getRole().equals("technicien")) {
+            LoginResponse response = new LoginResponse();
+            response.setRole("technicien");
+            // Ajoutez d'autres données au besoin
+            return ResponseEntity.ok(response);
         } else {
             return ResponseEntity.badRequest().body("Rôle non autorisé");
         }

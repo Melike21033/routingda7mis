@@ -15,6 +15,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { LoginComponent } from './login/login.component'; 
 import { ResponseService } from './response.service';
+import { AdminComponent } from './admin/admin.component';
+import { UpdateticketComponent } from './user-interface/user-interface-tickets/updateticket/updateticket.component';
+import { DeleteticketComponent } from './user-interface/user-interface-tickets/deleteticket/deleteticket.component';
+import { TechInterfaceTicketsComponent } from './tech-interface/tech-interface-tickets/tech-interface-tickets.component';
+import { RouterModule } from '@angular/router';
+import { TechInterfaceComponent } from './tech-interface/tech-interface.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +31,10 @@ import { ResponseService } from './response.service';
     UserInterfaceTicketsComponent,
     AddticketComponent,
     LoginComponent,
+    AdminComponent,
+    UpdateticketComponent,
+    DeleteticketComponent,
+    TechInterfaceTicketsComponent,TechInterfaceComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +44,8 @@ import { ResponseService } from './response.service';
     FormsModule,
     MatFormFieldModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,    RouterModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
