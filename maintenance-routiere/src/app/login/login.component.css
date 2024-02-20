@@ -1,0 +1,51 @@
+/* Style général du formulaire */
+.bb {
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 200px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Style pour le titre "Login" */
+  .bb h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Style pour les étiquettes */
+  .aa label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  /* Style pour les champs de saisie */
+  .aa input[type="email"],
+  .aa input[type="password"] {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  /* Style pour le bouton de soumission */
+  button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #252323;
+    border: none;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #252323;
+  }
+  

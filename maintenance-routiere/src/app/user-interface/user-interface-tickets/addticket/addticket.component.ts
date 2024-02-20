@@ -24,7 +24,7 @@ export class AddticketComponent {
     priority: 'Basse',
     status: 'En attente',
     image: '', // L'image sera stockée sous forme de chemin relatif
-    userId: 0
+    userId: 3
   };
 
   constructor(

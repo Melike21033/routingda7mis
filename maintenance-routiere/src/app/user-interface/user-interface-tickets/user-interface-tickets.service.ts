@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { Ticket } from './ticket';
 import { AuthService } from 'src/app/auth.service';
 import { BehaviorSubject } from 'rxjs';
-
+import { utilisateur } from './utilisateur';
 @Injectable({
   providedIn: 'root'
 })
@@ -20,7 +20,7 @@ selectedTicketId: number | null = null;
   }
   
   getAllTickets(): Observable<Ticket[]> {
-    const loginResponse = this.responseService.getResponse(); // Récupérez la réponse de connexion
+    const loginResponse = this.authService.getLoginResponse(); // Récupérez la réponse de connexion
    console.log(loginResponse)
     if (!loginResponse) {
       throw new Error('Login response is undefined');
@@ -28,6 +28,7 @@ selectedTicketId: number | null = null;
     const url = `${this.apiUrl}/utilisateur/${loginResponse.id}`; // Utilisez l'ID de l'utilisateur dans l'URL
     return this.http.get<Ticket[]>(url, { withCredentials: true });
   }
+
 
   createTicket(ticket: Ticket): Observable<Ticket> {
     return this.http.post<Ticket>(this.apiUrl, ticket,{ withCredentials: true });
@@ -53,4 +54,11 @@ selectedTicketId: number | null = null;
       modalBackgroundupdate.style.display = 'block';
     }
   }
+
+  
+  getUserById(userId: number): Observable<utilisateur> {
+    const url = `http://localhost:8082/api/utilisateurs/findById?id=${userId}`; // Construisez l'URL avec l'ID de l'utilisateur
+    return this.http.get<utilisateur>(url, { withCredentials: true });
+  }
+  
 }

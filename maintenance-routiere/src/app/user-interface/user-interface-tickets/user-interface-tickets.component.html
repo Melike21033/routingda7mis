@@ -11,28 +11,17 @@
         </div>
 <table class="table">
     <tr>
-        <th>ticket ID</th>
         <th>description</th>
         <th>localisation</th>
         <th>date_creation</th>
-        <th>date_resolution</th>
-        <th>Image</th> <!-- Nouvelle colonne pour l'image -->
         <th>priorite</th>
         <th>statut</th>
         <th>Action</th>
     </tr>
     <tr *ngFor="let ticket of Tickets"> <!-- Ajoutez une apostrophe après "tickets" -->
-        <td>{{ ticket.id }}</td>
         <td>{{ ticket.description }}</td>
         <td>{{ ticket.localisation }}</td>
         <td>{{ ticket.date_creation }}</td>
-        <td>{{ ticket.date_resolution }}</td>
-        <!-- Vérifiez si le ticket a une image, affichez un lien vers l'image -->
-        <td *ngIf="ticket.image">
-            <a href="{{ ticket.image }}" target="_blank">Voir l'image</a>
-        </td>
-        <!-- Si le ticket n'a pas d'image, affichez simplement un texte -->
-        <td *ngIf="!ticket.image">Pas d'image</td>
         <td>{{ ticket.priority }}</td>
         <td>{{ ticket.status }}</td>
         <td>

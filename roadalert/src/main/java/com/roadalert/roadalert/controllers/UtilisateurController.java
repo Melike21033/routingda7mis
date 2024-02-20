@@ -19,12 +19,15 @@ public class UtilisateurController {
     }
 
     // Endpoint pour rechercher un utilisateur par son adresse e-mail
+    @CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
+
     @GetMapping("/findByEmail")
     public ResponseEntity<Utilisateur> findByEmail(@RequestParam String email) {
         Utilisateur utilisateur = utilisateurService.findByEmail(email);
         if (utilisateur != null) {
             return ResponseEntity.ok(utilisateur);
         } else {
+
             return ResponseEntity.notFound().build();
         }
     }

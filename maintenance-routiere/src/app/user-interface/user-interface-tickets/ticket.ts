@@ -8,5 +8,5 @@ export interface Ticket {
     priority: string;
     status: string;
     image:string;
-    userId:number;
+    userId:3;
   }

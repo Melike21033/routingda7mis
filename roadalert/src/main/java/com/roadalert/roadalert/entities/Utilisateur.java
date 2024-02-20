@@ -12,8 +12,9 @@ public class Utilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private Long id;
-    @Column
+	private Long id = Long.valueOf(3);
+
+	@Column
     private String nom;
     @Column
     private String email;

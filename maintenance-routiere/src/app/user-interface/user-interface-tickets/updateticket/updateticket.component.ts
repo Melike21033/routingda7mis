@@ -18,7 +18,7 @@ export class UpdateticketComponent {
     priority: 'Basse',
     status: 'En attente',
     image: '',
-    userId: 0
+    userId: 3
   };
 
   constructor(private http: HttpClient, private TicketService: UserInterfaceTicketsService) {}

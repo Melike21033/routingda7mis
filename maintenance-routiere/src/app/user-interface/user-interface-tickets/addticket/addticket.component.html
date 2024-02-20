@@ -12,8 +12,7 @@
 
       <label for="localisation">Localisation :</label>
       <button class="a" type="button" (click)="getCurrentLocation()">Obtenir la localisation actuelle</button>
-      <label for="image">Image :</label>
-<input type="file" id="image" (change)="onFileSelected($event)">
+      
 
       <label for="date_creation">Date de création :</label>
       <input type="date" id="date_creation" [(ngModel)]="newTicket.date_creation" name="date_creation" placeholder="Entrez la date_creation">
@@ -24,10 +23,10 @@
         <option value="Moyenne">Moyenne</option>
         <option value="Basse">Basse</option>
       </select>
-
+      
     </div>
     <div style="width: 113.5%;background-color:  #252323;margin-left: -20px;height: 70px;">
-      <button class="b" id="saveBtn" style="margin-top: 15px;margin-left: 230px;" (click)="addTicket($event)" [disabled]="isAdding">Ajouter</button>
+      <button class="b" id="saveBtn" style="margin-top: 15px;margin-left: 230px;" [disabled]="isAdding">Ajouter</button>
     </div>
   </form>
   </div>

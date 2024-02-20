@@ -35,45 +35,27 @@ public class TicketController {
     }
 
     // Endpoint pour télécharger un fichier
-    @CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
-
-    @PostMapping("/upload")
-    public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
-        if (file.isEmpty()) {
-            return ResponseEntity.badRequest().body("Veuillez sélectionner un fichier à télécharger.");
-        }
-
-        try {
-            // Logique de téléchargement du fichier
-
-            // Renvoyer l'URL de l'image téléchargée
-            String imageUrl = "http://localhost:8082/images/" + file.getOriginalFilename();
-            return ResponseEntity.ok().body(imageUrl);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erreur lors du téléchargement du fichier.");
-        }
-    }
 
     @CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
     @PutMapping("/{id}/status")
-    public ResponseEntity<Ticket> changeTicketStatus(@PathVariable Long id, @RequestBody String status) {
-        Ticket updatedTicket = ticketService.changeTicketStatus(id, status);
-        if (updatedTicket != null) {
-            return ResponseEntity.ok(updatedTicket);
+    public ResponseEntity<Ticket> changeTicketStatus(@PathVariable Long id, @RequestBody Ticket updatedTicket) {
+        Ticket ticket = ticketService.changeTicketStatus(id, String.valueOf(updatedTicket));
+        if (ticket != null) {
+            return ResponseEntity.ok(ticket);
         } else {
             return ResponseEntity.notFound().build();
         }
     }
+
     // Endpoint pour créer un nouveau ticket
     @CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
-
     @PostMapping
     public ResponseEntity<Ticket> createTicket(@RequestBody Ticket ticket) {
         // Le champ image est déjà une chaîne Base64
         Ticket createdTicket = ticketService.createTicket(ticket);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdTicket);
     }
+
 
     // Endpoint pour récupérer un ticket par son ID
     @CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")

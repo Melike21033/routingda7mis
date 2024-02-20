@@ -9,4 +9,5 @@ public interface UtilisateurService {
     List<Utilisateur> getAllUtilisateurs();
 
     Utilisateur changerRoleUtilisateur(Long id, String nouveauRole);
+
 }

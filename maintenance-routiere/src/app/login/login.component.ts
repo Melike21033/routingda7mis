@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { ResponseService } from '../response.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -22,11 +23,23 @@ export class LoginComponent {
         this.responseService.setResponse(response)
         console.log( this.responseService.getResponse())
         if (response.role === 'user') {
-          this.router.navigate(['/user-interface-tickets']);
+          if (this.password === '12345') {
+            this.router.navigate(['/user-interface-tickets']);
+          } else {
+            this.errorMessage = 'Mot de passe incorrect pour le rôle utilisateur';
+          }
         } else if (response.role === 'admin') {
-          this.router.navigate(['/admin']);
-        }else if (response.role === 'technicien') {
-          this.router.navigate(['/tech-interface-tickets']);
+          if (this.password === '123') {
+            this.router.navigate(['/admin']);
+          } else {
+            this.errorMessage = 'Mot de passe incorrect pour le rôle administrateur';
+          }
+        } else if (response.role === 'technicien') {
+          if (this.password === '1234') {
+            this.router.navigate(['/tech-interface-tickets']);
+          } else {
+            this.errorMessage = 'Mot de passe incorrect pour le rôle technicien';
+          }
         } else {
           this.errorMessage = 'Rôle non autorisé';
         }
@@ -36,6 +49,4 @@ export class LoginComponent {
       }
     );
   }
-  
-
 }
