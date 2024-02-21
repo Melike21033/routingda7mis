@@ -1,12 +1,14 @@
 // ticket.ts
+import { utilisateur } from './utilisateur';
+
 export interface Ticket {
     id: number;
     description: string;
     localisation: string;
     date_creation: Date;
-    date_resolution: Date | null; // Peut être null si le ticket n'est pas encore résolu
+    date_resolution: Date | null;
     priority: string;
     status: string;
-    image:string;
-    userId:3;
-  }
+    image: string;
+    utilisateur: utilisateur; // Utilisateur associé au ticket
+}

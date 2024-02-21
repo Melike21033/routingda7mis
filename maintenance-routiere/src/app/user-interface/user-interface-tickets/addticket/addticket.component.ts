@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { Ticket } from '../ticket';
 import { Router } from '@angular/router';
 import { UserInterfaceTicketsService } from '../user-interface-tickets.service';
-import { LoginResponse } from '../../LoginResponse';
-import { ResponseService } from 'src/app/response.service';
-import { HttpClient } from '@angular/common/http';
 
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from 'src/app/auth.service';
+import { utilisateur } from '../utilisateur';
 
 @Component({
   selector: 'app-addticket',
@@ -24,39 +24,51 @@ export class AddticketComponent {
     priority: 'Basse',
     status: 'En attente',
     image: '', // L'image sera stockée sous forme de chemin relatif
-    userId: 3
+    utilisateur: {} as utilisateur // Initialisez un objet utilisateur vide
   };
 
   constructor(
     private http: HttpClient,
     private ticketservice: UserInterfaceTicketsService,
     private router: Router,
-    private responseService: ResponseService
+    private authService:AuthService
+
   ) {}
 
   addTicket(event: any): void {
     event.preventDefault();
-    const loginResponse = this.responseService.getResponse();
+    const loginResponse = this.authService.getLoginResponse();
 
     if (!this.isAdding) {
       this.isAdding = true;
 
-      if (!loginResponse) {
-        console.error('Réponse de connexion non disponible lors de l\'ajout de ticket.');
+      if (!loginResponse || loginResponse.id === undefined) {
+        console.error('Réponse de connexion non disponible ou ID utilisateur non défini lors de l\'ajout de ticket.');
         return;
       }
 
-      this.ticketservice.createTicket(this.newTicket).subscribe(() => {
-        this.closeModal();
-        window.location.reload();
-        this.router.navigate(['/user-interface-tickets']);
-        this.isAdding = false;
+      // Récupérez l'utilisateur correspondant à partir de son ID
+      this.ticketservice.getUserById(loginResponse.id).subscribe(user => {
+        // Associez l'utilisateur récupéré au ticket
+        this.newTicket.utilisateur = user;
+
+        // Créez le ticket avec l'utilisateur associé
+        this.ticketservice.createTicket(this.newTicket).subscribe(() => {
+          this.closeModal();
+          window.location.reload();
+          this.router.navigate(['/user-interface-tickets']);
+          this.isAdding = false;
+        }, error => {
+          console.error("Une erreur s'est produite lors de la création du ticket :", error);
+          this.isAdding = false;
+        });
       }, error => {
-        console.error("Une erreur s'est produite lors de la création du ticket :", error);
+        console.error("Une erreur s'est produite lors de la récupération de l'utilisateur :", error);
         this.isAdding = false;
       });
     }
   }
+
 
   getCurrentLocation(): void {
     if (navigator.geolocation) {

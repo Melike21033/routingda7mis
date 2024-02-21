@@ -7,6 +7,7 @@ import com.roadalert.roadalert.entities.Utilisateur;
 import com.roadalert.roadalert.repositories.UtilisateurRepository;
 
  import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UtilisateurServiceImpl implements UtilisateurService {
@@ -17,6 +18,12 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     @Override
     public Utilisateur findByEmail(String email) {
         return utilisateurRepository.findByEmail(email);
+    }
+
+
+    @Override
+    public Optional<Utilisateur> findById(long id) {
+        return utilisateurRepository.findById(id);
     }
 
     @Override
@@ -34,4 +41,5 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         return utilisateur;
     }
 
+    
 }

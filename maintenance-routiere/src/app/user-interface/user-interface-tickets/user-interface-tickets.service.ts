@@ -57,7 +57,7 @@ selectedTicketId: number | null = null;
 
   
   getUserById(userId: number): Observable<utilisateur> {
-    const url = `http://localhost:8082/api/utilisateurs/findById?id=${userId}`; // Construisez l'URL avec l'ID de l'utilisateur
+    const url = `http://localhost:8082/api/utilisateurs/${userId}`; // Construisez l'URL avec l'ID de l'utilisateur
     return this.http.get<utilisateur>(url, { withCredentials: true });
   }
   

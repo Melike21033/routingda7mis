@@ -23,23 +23,15 @@ export class LoginComponent {
         this.responseService.setResponse(response)
         console.log( this.responseService.getResponse())
         if (response.role === 'user') {
-          if (this.password === '12345') {
+          
             this.router.navigate(['/user-interface-tickets']);
-          } else {
-            this.errorMessage = 'Mot de passe incorrect pour le rôle utilisateur';
-          }
+        
         } else if (response.role === 'admin') {
-          if (this.password === '123') {
-            this.router.navigate(['/admin']);
-          } else {
-            this.errorMessage = 'Mot de passe incorrect pour le rôle administrateur';
-          }
+         
         } else if (response.role === 'technicien') {
-          if (this.password === '1234') {
+         
             this.router.navigate(['/tech-interface-tickets']);
-          } else {
-            this.errorMessage = 'Mot de passe incorrect pour le rôle technicien';
-          }
+        
         } else {
           this.errorMessage = 'Rôle non autorisé';
         }

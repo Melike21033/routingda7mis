@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Ticket } from '../ticket';
 import { HttpClient } from '@angular/common/http';
 import { UserInterfaceTicketsService } from '../user-interface-tickets.service';
-
+import { utilisateur } from '../utilisateur';
 @Component({
   selector: 'app-updateticket',
   templateUrl: './updateticket.component.html',
@@ -18,7 +18,7 @@ export class UpdateticketComponent {
     priority: 'Basse',
     status: 'En attente',
     image: '',
-    userId: 3
+    utilisateur: {} as utilisateur // Initialisez un objet utilisateur vide
   };
 
   constructor(private http: HttpClient, private TicketService: UserInterfaceTicketsService) {}
